@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- BRUTAL passes pointers to native APIs directly, so unsafe code is normal here. -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Windowing and input. -->
+    <PackageReference Include="Ahwoo.Brutal.Glfw" Version="2026.10.4" />
+    <!-- Vulkan bindings, plus helpers for instances, devices and command buffers. -->
+    <PackageReference Include="Ahwoo.Brutal.Vulkan" Version="2026.10.2" />
+    <PackageReference Include="Ahwoo.Brutal.Vulkan.Abstractions" Version="2026.10.2" />
+    <!-- Compiles GLSL to SPIR-V at startup. -->
+    <PackageReference Include="Ahwoo.Brutal.ShaderC" Version="2026.10.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Shaders are compiled at runtime, so ship the source next to the executable. -->
+    <None Include="Shaders\**" CopyToOutputDirectory="PreserveNewest" />
+    <!-- The BRUTAL licence (section 2.3) requires NOTICE.txt to ship alongside the game. -->
+    <None Include="NOTICE.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
